@@ -19,25 +19,22 @@ exports.homepage = async (req, res) => {
     const chinese = await Recipe.find({
       'category': 'Chinese'
     }).limit(limitNumber);
-    const mexican = await Recipe.find({
-      'category': 'Mexican'
-    }).limit(limitNumber);
-    const indian = await Recipe.find({
-      'category': 'Indian'
-    }).limit(limitNumber);
-    const spanish = await Recipe.find({
-      'category': 'Spanish'
-    }).limit(limitNumber);
+    // const mexican = await Recipe.find({
+    //   'category': 'Mexican'
+    // }).limit(limitNumber);
+    // const indian = await Recipe.find({
+    //   'category': 'Indian'
+    // }).limit(limitNumber);
+    // const spanish = await Recipe.find({
+    //   'category': 'Spanish'
+    // }).limit(limitNumber);
     const food = {
       latest,
       thai,
       american,
-      chinese,
-      mexican,
-      indian,
-      spanish
+      chinese
     };
-    console.log(food);
+    // console.log(food);
     res.render('index', {
       title: 'Cooking Blog-Home',
       categories,
@@ -55,7 +52,7 @@ exports.homepage = async (req, res) => {
 //Categories page(http://localhost:3000/categories)
 exports.exploreCategories = async (req, res) => {
   try {
-    const limitNumber = 20;
+    const limitNumber = 6;
     const categories = await Category.find({}).limit(limitNumber);
 
     res.render('categories', {
@@ -73,7 +70,7 @@ exports.exploreCategories = async (req, res) => {
 exports.exploreCategoriesById = async (req, res) => {
   try {
     let categoryId = req.params.id; //gets id from this router.get('/recipe/:id',recipeController.exploreRecipe);
-    const limitNumber = 20;
+    const limitNumber = 5;
     const categoryById = await Recipe.find({
       'category': categoryId
     }).limit(limitNumber); //query on db
@@ -120,6 +117,7 @@ exports.searchRecipe = async (req, res) => {
       title: 'Cooking Blog-Search',
       recipe
     });
+
   } catch (error) {
     res.status(500).send({
       message: error.message || "Error Occured"
@@ -129,7 +127,7 @@ exports.searchRecipe = async (req, res) => {
 
 exports.exploreLatest = async (req, res) => {
   try {
-    const limitNumber = 20;
+    const limitNumber = 5;
     const recipe = await Recipe.find({}).sort({
       _id: -1
     }).limit(limitNumber);
@@ -152,7 +150,7 @@ exports.exploreRandom = async (req, res) => {
     // res.json(recipe);
 
     res.render('explore-random', {
-      title: 'Cooking Blog-Exploere random',
+      title: 'Cooking Blog-Explore random',
       recipe
     });
   } catch (error) {
@@ -182,7 +180,7 @@ exports.submitRecipeOnPost = async (req, res) => {
     let uploadPath;
     let newImageName;
 
-    if (!req.files || Object.keys(req.files).length == 0) {
+    if (!req.files || Object.keys(req.files).length === 0) {
       console.log("no files uploaded");
     } else {
       imageUploadFile = req.files.image; //get the name of the input from submit-recipe
@@ -241,7 +239,7 @@ exports.submitRecipeOnPost = async (req, res) => {
 
 
 
-//step15 create index.ejs in views trhen go to main.ejs create html layout and all datapages will use this layout
+
 // async function insertDummyCategoryData(){
 //   try{
 //     await Category.insertMany([
@@ -263,7 +261,7 @@ exports.submitRecipeOnPost = async (req, res) => {
 //       },
 //       {
 //         "name":"Indian",
-//         "image":"Indian-food.jpg"
+//         "image":"indian-food.jpg"
 //       },
 //       {
 //         "name":"Spanish",
@@ -276,15 +274,15 @@ exports.submitRecipeOnPost = async (req, res) => {
 // }
 //
 // insertDummyCategoryData();
-
-
-
-
-
-
-
-
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
 // async function insertDummyRecipeData() {
 //   try {
 //     await Recipe.insertMany([{
@@ -809,7 +807,7 @@ exports.submitRecipeOnPost = async (req, res) => {
 //         "category": "Indian",
 //         "image": "rogan-josh.jpg"
 //       },
-
+//
 //             {
 //             "name": "Paella Valenciana",
 //             "description": `Paella is perhaps the most famous Spanish dish of all, and certainly one of the most abused. Authentic paella originates from the region around Valencia, and comes in two varieties: Paella Valenciana, with rabbit and chicken; and seafood paella.Saffron gives the rice its color, and the base should be left to crisp into a mouth-watering black crust, called the socarrat. Always eaten at lunchtime.`,
@@ -916,7 +914,7 @@ exports.submitRecipeOnPost = async (req, res) => {
 //             "Sea Salt Flakes",
 //           ],
 //           "category": "Spanish",
-//           "image": "pimientos-de-Padron.jpg"
+//           "image": "pimientos-de-padron.jpg"
 //         }, {
 //           "name": "Fideuà",
 //           "description": `Less well known to tourists, fideuà is a type of Spanish pasta similar to vermicelli. It's popular in Catalonia and Valencia in seafood dishes that rival paella for their taste and intricacy. Fideuà is typically cooked in a paella dish.`,
@@ -940,7 +938,7 @@ exports.submitRecipeOnPost = async (req, res) => {
 //           "category": "Spanish",
 //           "image": "fideuà.jpg"
 //         },
-
+//
 //     ]);
 //   } catch (error) {
 //     console.log('err', +error)
