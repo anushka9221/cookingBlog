@@ -9,7 +9,7 @@ const flash=require('connect-flash');
 
 
 const app=express();  //initialize a new express application
-const port= process.env.PORT || 3000  //port number
+let port= process.env.PORT || 3000  //port number
 
 
 require('dotenv').config();//storing all database details
