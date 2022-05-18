@@ -2,14 +2,14 @@
 const express=require('express');
 const expressLayouts=require('express-ejs-layouts');//very useful when we create templates for our website creates different layouts for different scenarios
 
-const fileUpload=require('express-fileUpload');
+const fileUpload=require('express-fileupload');
 const session=require('express-session');
 const cookieParser=require('cookie-parser');
 const flash=require('connect-flash');
 
 
 const app=express();  //initialize a new express application
-let port= process.env.PORT || 3000  //port number
+const port= process.env.PORT || 3000;  //port number
 
 
 require('dotenv').config();//storing all database details
@@ -32,7 +32,7 @@ app.set('layout','./layouts/main');//for the layout we have to set a main folder
 app.set('view engine','ejs');
 const routes=require('./server/routes/recipeRoutes.js')//create some route
 app.use('/',routes);//use routes
-app.listen(port,()=> console.log('Listening to port 3000'));//all app is listening on port number ()=> this is narrow function
+app.listen(port,()=> console.log('Listening to port ${port}'));//all app is listening on port number ()=> this is narrow function
 //step2 create a folder public and create folders css,img,js,uploads inside public folder
 //step3 create a server folder and inside this create a controllers folder in which we are going to do all the queries and control the functionalities of every single page
 //step4 create a folder models inside server folder and these are going to be the way we structure our database
