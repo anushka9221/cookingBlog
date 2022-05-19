@@ -25,7 +25,7 @@
   <% if(categories!=''){ %>
     <% categories.forEach(function(category,index){ %>
 
-  <a href="#" class="col text-center category__link">
+  <a href="/categories/<%- category.name %>" class="col text-center category__link">
     <div class="category__img shadow">
       <img src="img/<%- category.image %>" alt="<%- category.name %>" loading="lazy">
     </div>
@@ -50,7 +50,7 @@
     <a href="/explore-latest" class="ms-auto">View more</a>
   </div>
 <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-  <% if(food.latest!=''){ %>
+  <% if(food!=''){ %>
       <% food.latest.forEach(function(recipe, index){ %>
     <a href="/recipe/<%= recipe._id%>" class="col text-center category__link">
       <div class="category__img category__img--large shadow">

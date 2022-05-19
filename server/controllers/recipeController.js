@@ -19,7 +19,7 @@ exports.homepage = async (req, res) => {
     const chinese = await Recipe.find({
       'category': 'Chinese'
     }).limit(limitNumber);
-  
+
     const food = {
       latest,
       thai,
@@ -205,6 +205,24 @@ exports.submitRecipeOnPost = async (req, res) => {
 
 }
 
+
+exports.contact= async (req, res) => {
+  try {
+
+    res.render('contact', {
+      title: 'Contact-Me'
+    });
+  } catch (error) {
+    res.status(500).send({
+      message: error.message || "Error Occured"
+    });
+  }
+}
+
+// a921492a5e96ba8651040e4bee7a2285-us20
+
+
+
 //update newrecipe but comment this so that it doesnt get updated always
 //async function updateRecipe(){
 //try{
@@ -232,40 +250,40 @@ exports.submitRecipeOnPost = async (req, res) => {
 
 
 
-async function insertDummyCategoryData(){
-  try{
-    await Category.insertMany([
-      {
-        "name":"Thai",
-        "image":"thai-food.jpg"
-      },
-      {
-        "name":"American",
-        "image":"american-food.jpg"
-      },
-      {
-        "name":"Chinese",
-        "image":"chinese-food.jpg"
-      },
-      {
-        "name":"Mexican",
-        "image":"mexican-food.jpg"
-      },
-      {
-        "name":"Indian",
-        "image":"indian-food.jpg"
-      },
-      {
-        "name":"Spanish",
-        "image":"spanish-food.jpg"
-      },
-    ]);
-  }catch(error){
-  console.log('err',+error)
-}
-}
-
-insertDummyCategoryData();
+// async function insertDummyCategoryData(){
+//   try{
+//     await Category.insertMany([
+//       {
+//         "name":"Thai",
+//         "image":"thai-food.jpg"
+//       },
+//       {
+//         "name":"American",
+//         "image":"american-food.jpg"
+//       },
+//       {
+//         "name":"Chinese",
+//         "image":"chinese-food.jpg"
+//       },
+//       {
+//         "name":"Mexican",
+//         "image":"mexican-food.jpg"
+//       },
+//       {
+//         "name":"Indian",
+//         "image":"indian-food.jpg"
+//       },
+//       {
+//         "name":"Spanish",
+//         "image":"spanish-food.jpg"
+//       },
+//     ]);
+//   }catch(error){
+//   console.log('err',+error)
+// }
+// }
+//
+// insertDummyCategoryData();
 //
 //
 //

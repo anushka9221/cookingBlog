@@ -1,7 +1,7 @@
 //step1 creating file app.js and add dependencies
 const express=require('express');
 const expressLayouts=require('express-ejs-layouts');//very useful when we create templates for our website creates different layouts for different scenarios
-
+const path = require('path');
 const fileUpload=require('express-fileupload');
 const session=require('express-session');
 const cookieParser=require('cookie-parser');
